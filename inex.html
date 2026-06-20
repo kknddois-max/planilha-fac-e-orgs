@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Controle ORGs & Facções</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+<h2>ORGS PANEL</h2>
+</div>
+
+<ul>
+
+<li onclick="showPage('dashboard')">
+<i class="fa-solid fa-chart-line"></i>
+<span>Dashboard</span>
+</li>
+
+<li onclick="showPage('orgs')">
+<i class="fa-solid fa-crown"></i>
+<span>Controle ORGs</span>
+</li>
+
+<li onclick="showPage('municao')">
+<i class="fa-solid fa-gun"></i>
+<span>FACS Munição</span>
+</li>
+
+<li onclick="showPage('desmanche')">
+<i class="fa-solid fa-car"></i>
+<span>FACS Desmanche</span>
+</li>
+
+<li onclick="showPage('meta')">
+<i class="fa-solid fa-capsules"></i>
+<span>FACS Metanfetamina</span>
+</li>
+
+<li onclick="showPage('lavagem')">
+<i class="fa-solid fa-money-bill-wave"></i>
+<span>FACS Lavagem</span>
+</li>
+
+<li onclick="showPage('baseado')">
+<i class="fa-solid fa-leaf"></i>
+<span>FACS Baseado</span>
+</li>
+
+<li onclick="showPage('coca')">
+<i class="fa-solid fa-snowflake"></i>
+<span>FACS Coca</span>
+</li>
+
+<li onclick="showPage('airsoft')">
+<i class="fa-solid fa-bullseye"></i>
+<span>Airsoft</span>
+</li>
+
+<li onclick="showPage('historico')">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<span>Histórico</span>
+</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="page active">
+
+<h1>Dashboard</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Controle ORGs</h3>
+<p id="count-orgs">0</p>
+</div>
+
+<div class="card">
+<h3>Munição</h3>
+<p id="count-municao">0</p>
+</div>
+
+<div class="card">
+<h3>Desmanche</h3>
+<p id="count-desmanche">0</p>
+</div>
+
+<div class="card">
+<h3>Metanfetamina</h3>
+<p id="count-meta">0</p>
+</div>
+
+<div class="card">
+<h3>Lavagem</h3>
+<p id="count-lavagem">0</p>
+</div>
+
+<div class="card">
+<h3>Baseado</h3>
+<p id="count-baseado">0</p>
+</div>
+
+<div class="card">
+<h3>Coca</h3>
+<p id="count-coca">0</p>
+</div>
+
+<div class="card">
+<h3>Airsoft</h3>
+<p id="count-airsoft">0</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- TEMPLATE DAS FACÇÕES -->
+
+<section id="orgs" class="page">
+
+<h1>Controle ORGs</h1>
+
+<div class="toolbar">
+
+<input
+type="text"
+id="search-orgs"
+placeholder="Pesquisar nome ou ID..."
+onkeyup="renderTable('orgs')">
+
+</div>
+
+<div class="form-box">
+
+<input type="text"
+id="nome-orgs"
+placeholder="Nome">
+
+<input type="text"
+id="id-orgs"
+placeholder="ID">
+
+<select id="cargo-orgs">
+
+<option>Diretor ORGs & Legal</option>
+<option>ADM ORGs</option>
+<option>Resp. ORGs</option>
+<option>Aux. ORGs</option>
+<option>Líder ORGs</option>
+<option>Sub-Líder ORGs</option>
+<option>Equipe ORGs</option>
+
+</select>
+
+<button onclick="saveMember('orgs')">
+Salvar
+</button>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>Nome</th>
+<th>ID</th>
+<th>Cargo</th>
+<th>Ações</th>
+</tr>
+</thead>
+
+<tbody id="table-orgs"></tbody>
+
+</table>
+
+</section>
+<!-- MUNIÇÃO -->
+
+<section id="municao" class="page">
+
+<h1>FACS Munição</h1>
+
+<div class="toolbar">
+<input
+type="text"
+id="search-municao"
+placeholder="Pesquisar nome ou ID..."
+onkeyup="renderTable('municao')">
+</div>
+
+<div class="form-box">
+
+<input type="text" id="nome-municao" placeholder="Nome">
+<input type="text" id="id-municao" placeholder="ID">
+
+<select id="cargo-municao">
+<option>Chefe</option>
+<option>Sub-Chefe</option>
+<option>Gerente Geral</option>
+<option>Gerente</option>
+<option>Membro</option>
+</select>
+
+<button onclick="saveMember('municao')">
+Salvar
+</button>
+
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>ID</th>
+<th>Cargo</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody id="table-municao"></tbody>
+</table>
+
+</section>
+
+<!-- DESMANCHE -->
+
+<section id="desmanche" class="page">
+
+<h1>FACS Desmanche</h1>
+
+<div class="toolbar">
+<input
+type="text"
+id="search-desmanche"
+placeholder="Pesquisar nome ou ID..."
+onkeyup="renderTable('desmanche')">
+</div>
+
+<div class="form-box">
+
+<input type="text" id="nome-desmanche" placeholder="Nome">
+<input type="text" id="id-desmanche" placeholder="ID">
+
+<select id="cargo-desmanche">
+<option>Chefe</option>
+<option>Sub-Chefe</option>
+<option>Gerente Geral</option>
+<option>Gerente</option>
+<option>Membro</option>
+</select>
+
+<button onclick="saveMember('desmanche')">
+Salvar
+</button>
+
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>ID</th>
+<th>Cargo</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody id="table-desmanche"></tbody>
+</table>
+
+</section>
+
+<!-- METANFETAMINA -->
+
+<section id="meta" class="page">
+
+<h1>FACS Metanfetamina</h1>
+
+<div class="toolbar">
+<input
+type="text"
+id="search-meta"
+placeholder="Pesquisar nome ou ID..."
+onkeyup="renderTable('meta')">
+</div>
+
+<div class="form-box">
+
+<input type="text" id="nome-meta" placeholder="Nome">
+<input type="text" id="id-meta" placeholder="ID">
+
+<select id="cargo-meta">
+<option>Chefe</option>
+<option>Sub-Chefe</option>
+<option>Gerente Geral</option>
+<option>Gerente</option>
+<option>Membro</option>
+</select>
+
+<button onclick="saveMember('meta')">
+Salvar
+</button>
+
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>ID</th>
+<th>Cargo</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody id="table-meta"></tbody>
+</table>
+
+</section>
+
+<!-- LAVAGEM -->
+
+<section id="lavagem" class="page">
+
+<h1>FACS Lavagem</h1>
+
+<div class="toolbar">
+<input
+type="text"
+id="search-lavagem"
+placeholder="Pesquisar nome ou ID..."
+onkeyup="renderTable('lavagem')">
+</div>
+
+<div class="form-box">
+
+<input type="text" id="nome-lavagem" placeholder="Nome">
+<input type="text" id="id-lavagem" placeholder="ID">
+
+<select id="cargo-lavagem">
+<option>Chefe</option>
+<option>Sub-Chefe</option>
+<option>Gerente Geral</option>
+<option>Gerente</option>
+<option>Membro</option>
+</select>
+
+<button onclick="saveMember('lavagem')">
+Salvar
+</button>
+
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>ID</th>
+<th>Cargo</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody id="table-lavagem"></tbody>
+</table>
+
+</section>
+<!-- BASEADO -->
+
+<section id="baseado" class="page">
+
+<h1>FACS Baseado</h1>
+
+<div class="toolbar">
+<input
+type="text"
+id="search-baseado"
+placeholder="Pesquisar nome ou ID..."
+onkeyup="renderTable('baseado')">
+</div>
+
+<div class="form-box">
+
+<input type="text" id="nome-baseado" placeholder="Nome">
+<input type="text" id="id-baseado" placeholder="ID">
+
+<select id="cargo-baseado">
+<option>Chefe</option>
+<option>Sub-Chefe</option>
+<option>Gerente Geral</option>
+<option>Gerente</option>
+<option>Membro</option>
+</select>
+
+<button onclick="saveMember('baseado')">
+Salvar
+</button>
+
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>ID</th>
+<th>Cargo</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody id="table-baseado"></tbody>
+</table>
+
+</section>
+
+<!-- COCA -->
+
+<section id="coca" class="page">
+
+<h1>FACS Coca</h1>
+
+<div class="toolbar">
+<input
+type="text"
+id="search-coca"
+placeholder="Pesquisar nome ou ID..."
+onkeyup="renderTable('coca')">
+</div>
+
+<div class="form-box">
+
+<input type="text" id="nome-coca" placeholder="Nome">
+<input type="text" id="id-coca" placeholder="ID">
+
+<select id="cargo-coca">
+<option>Chefe</option>
+<option>Sub-Chefe</option>
+<option>Gerente Geral</option>
+<option>Gerente</option>
+<option>Membro</option>
+</select>
+
+<button onclick="saveMember('coca')">
+Salvar
+</button>
+
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>ID</th>
+<th>Cargo</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody id="table-coca"></tbody>
+</table>
+
+</section>
+
+<!-- AIRSOFT -->
+
+<section id="airsoft" class="page">
+
+<h1>Airsoft</h1>
+
+<div class="toolbar">
+<input
+type="text"
+id="search-airsoft"
+placeholder="Pesquisar nome ou ID..."
+onkeyup="renderTable('airsoft')">
+</div>
+
+<div class="form-box">
+
+<input type="text" id="nome-airsoft" placeholder="Nome">
+<input type="text" id="id-airsoft" placeholder="ID">
+
+<select id="cargo-airsoft">
+<option>Dono</option>
+<option>Gerente</option>
+<option>Supervisor</option>
+<option>Membro</option>
+</select>
+
+<button onclick="saveMember('airsoft')">
+Salvar
+</button>
+
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>ID</th>
+<th>Cargo</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody id="table-airsoft"></tbody>
+</table>
+
+</section>
+
+<!-- HISTÓRICO -->
+
+<section id="historico" class="page">
+
+<h1>Histórico de Alterações</h1>
+
+<table>
+
+<thead>
+<tr>
+<th>Data</th>
+<th>Ação</th>
+</tr>
+</thead>
+
+<tbody id="historyTable">
+</tbody>
+
+</table>
+
+</section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
